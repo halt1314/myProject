@@ -46,4 +46,32 @@ public class CityServiceImpl implements CityService {
  		return result;
  	}
 
+	@Override
+	public City getCityByName(String cityName, String localCityName) {
+		return cityDao.getCityByName2(cityName, localCityName);
+	}
+
+	@Override
+	public Result<City> updateCity(City city) {
+		Result<City> result = new Result<>(ResultEnum.SUCCESS.status, "Update success.");
+		cityDao.updateCity(city);
+		result.setObject(city);
+		return result;
+	}
+
+	@Override
+	public Result<Object> deleteCity(int cityId) {
+		Result<Object> result = new Result<>(ResultEnum.SUCCESS.status, "Delete success.");
+
+		try {
+			cityDao.deleteCity(cityId);
+		} catch (Exception e) {
+			result.setStatus(ResultEnum.FAILD.status);
+			result.setMessage(e.getMessage());
+		}
+
+		return result;
+	
+	}
+
 }
