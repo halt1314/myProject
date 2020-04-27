@@ -1,0 +1,41 @@
+<div>
+This is test module index page.
+
+	<p>==================================================================</p>
+	<h3>th:text</h3>
+	<h1 th:text="${thymeleafTitle}"></h1>
+	<p th:text="${thymeleafTitle}"></p>
+	<p>==================================================================</p>
+	<h3>th:if,th:unless.</h3>
+	<p th:if="${checked} == true">If true, this will display</p>
+	<p th:unless="${checked} == false">If not false, this will display</p>
+	<p th:if="${currentNumber}&lt;100">print if the currentNumber &lt;100</p>
+	<p th:if="${thymeleafTitle} == null">name is null</p>
+	<p>==================================================================</p>
+	<h3>th:attr</h3>
+	checkbox:<input type="text" th:attr="type=${changeType}" th:checked="${checked}"/>
+	<p>==================================================================</p>
+	<h3>url,href</h3>
+	<a th:href="@{http://www.baidu.com}" target="_blank">Click it to turn to baidu</a><br>
+	<a th:href="${baiduUrl}" target="_blank">Click it to turn to Shop beauty</a><br>
+	<img th:src="@{${shopLogo}}"/>
+	
+		<table>
+	    <th>cityId</th><th>cityName</th><th>countryId</th>
+	    <tr th:each="city : ${cities}">
+		    <td th:text="${city.cityId}"></td>
+		    <td th:text="${city.cityName}"></td>
+		    <td th:text="${city.countryId}"></td>
+		    <td>
+		    	<!-- 拼接path参数 -->
+		    	<a th:href="@{'/test/index/'+${city.cityId}}" th:text="${city.cityName}"></a>
+		    </td>
+		    <td>
+		    	<!-- 拼接查询参数 -->
+		    	<a th:href="@{/test/index(pageSize=${city.cityId},currentPage='1')}" 
+		    		th:text="${city.cityName}"></a>
+		    </td>
+	    </tr>
+	</table>
+	
+</div> 
