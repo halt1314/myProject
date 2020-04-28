@@ -1,4 +1,18 @@
-<div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"  
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<TITLE>SpringDemo2001</TITLE>
+		<META name="description" content="THORNBIRD.COM"/>
+
+		<!-- 引入js和css -->
+		<script th:src="@{http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js}"></script>
+	</head>
+
+	<body>
+			<div>
 This is test module index page.
 
 	<p>==================================================================</p>
@@ -27,15 +41,36 @@ This is test module index page.
 		    <td th:text="${city.cityName}"></td>
 		    <td th:text="${city.countryId}"></td>
 		    <td>
-		    	<!-- ƴ��path���� -->
+		    	<!-- 拼接path参数 -->
 		    	<a th:href="@{'/test/index/'+${city.cityId}}" th:text="${city.cityName}"></a>
 		    </td>
 		    <td>
-		    	<!-- ƴ�Ӳ�ѯ���� -->
+		    	<!-- 拼接查询参数 -->
 		    	<a th:href="@{/test/index(pageSize=${city.cityId},currentPage='1')}" 
 		    		th:text="${city.cityName}"></a>
 		    </td>
 	    </tr>
 	</table>
 	
+	<p>==================================================================</p>
+ 	<h3>file upload and downlod</h3>
+ 	<a href="/test/download?fileName=164006021008-胡洋-毕业设计情况说明.docx">download file</a>
+ 	<br>
+
+ 	<p th:text="${message}"></p>
+ 	<p>上传文件，使用multipart/form-data类型</p>
+ 	<form action="/test/file" method="post" enctype="multipart/form-data">
+ 		<input type="file" name="file">
+ 		<button type="submit">上传</button>
+ 	</form>
+ 	<br>
+
+ 	<form action="/test/files" method="post" enctype="multipart/form-data">
+ 		<input type="file" name="files">
+ 		<input type="file" name="files">
+ 		<button type="submit">上传</button>
+ 	</form>
+	
 </div> 
+	</body>
+</html> 
