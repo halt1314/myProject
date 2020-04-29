@@ -130,4 +130,12 @@ public class TestPageController {
 
  		return null;
  	}
+	
+	@RequestMapping("/dashboad")
+	public String testDashboadPage(ModelMap modelMap){
+		
+		modelMap.addAttribute("template", "common/dashboad");
+		return "index";
+		
+	}
 }
